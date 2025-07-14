@@ -26,30 +26,69 @@ public class FeedbackPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        tabFeedback = new javax.swing.JTabbedPane();
+        panSubmitFeedback = new javax.swing.JPanel();
+        tabFeedbackHistory = new javax.swing.JPanel();
 
-        jLabel1.setText("This is the FeedbackPanel");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        jLabel2.setText("Feedback:");
+
+        javax.swing.GroupLayout panSubmitFeedbackLayout = new javax.swing.GroupLayout(panSubmitFeedback);
+        panSubmitFeedback.setLayout(panSubmitFeedbackLayout);
+        panSubmitFeedbackLayout.setHorizontalGroup(
+            panSubmitFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 597, Short.MAX_VALUE)
+        );
+        panSubmitFeedbackLayout.setVerticalGroup(
+            panSubmitFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 311, Short.MAX_VALUE)
+        );
+
+        tabFeedback.addTab("Submit Feedback", panSubmitFeedback);
+
+        javax.swing.GroupLayout tabFeedbackHistoryLayout = new javax.swing.GroupLayout(tabFeedbackHistory);
+        tabFeedbackHistory.setLayout(tabFeedbackHistoryLayout);
+        tabFeedbackHistoryLayout.setHorizontalGroup(
+            tabFeedbackHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 597, Short.MAX_VALUE)
+        );
+        tabFeedbackHistoryLayout.setVerticalGroup(
+            tabFeedbackHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 311, Short.MAX_VALUE)
+        );
+
+        tabFeedback.addTab("Feedback History", tabFeedbackHistory);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(jLabel1)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addGap(233, 233, 233)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabFeedback)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(128, 128, 128)
-                .addComponent(jLabel1)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(tabFeedback)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel panSubmitFeedback;
+    private javax.swing.JTabbedPane tabFeedback;
+    private javax.swing.JPanel tabFeedbackHistory;
     // End of variables declaration//GEN-END:variables
 }
