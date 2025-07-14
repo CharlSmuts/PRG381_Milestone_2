@@ -4,6 +4,7 @@
  */
 package wellness;
 
+import wellness.view.Dashboard;
 /**
  *
  * @author Koekie
@@ -14,7 +15,9 @@ public class Wellness {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            new Dashboard().setVisible(true);
+        });
     }
     
 }
