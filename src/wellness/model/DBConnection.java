@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
+import java.util.*;
+import java.sql.Time;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 
 
 
@@ -55,11 +59,12 @@ public class DBConnection {
                     
                     this.con.createStatement().execute(Query1);
 
-                    String Query2 = "CREATE TABLE counselors(cid INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), name VARCHAR(100), "+
-                            "specialization VARCHAR(100), available BOOLEAN)";
+                    String Query2 = "CREATE TABLE counselors(cid INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), name VARCHAR(100) NOT NULL, "+
+                            "specialization VARCHAR(100) NOT NULL, available BOOLEAN NOT NULL)";
                     this.con.createStatement().execute(Query2);
 
-                    String Query3 = "CREATE TABLE feedback(fid INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), student VARCHAR(100), comments varchar(100))";
+                    String Query3 = "CREATE TABLE feedback(fid INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), student VARCHAR(100) NOT NULL, comments VARCHAR(100) NOT NULL, "+
+                            "feedback INTEGER NOT NULL)";
                     this.con.createStatement().execute(Query3);                  
                 }
         catch (SQLException e)
@@ -98,8 +103,59 @@ public class DBConnection {
         //System.out.println(exists);
        return exists; 
     }
+    /*
+    //
+    //DATA ADDING UNTESTED
+    //
+    */
     
-    public void addData(String table){
+    public void addDataAppointments(String student, String counselor, Date appointment_date,  Time appointment_time, String status)
+    {
+        String Q = "INSERT INTO appointments (student, counselor, appointment_date, appointment_time, status) VALUES (?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = con.prepareStatement(Q);
+            
+            statement.setString(1, student);
+            statement.setString(2, counselor);
+            statement.setDate(3, appointment_date);
+            statement.setTime(4, appointment_time);
+            statement.setString(5, status);
+            statement.executeUpdate();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void addDataCounselors(String name, String spec, boolean available)
+    {
+       String Q = "INSERT INTO counselors (name, specialization, available) VALUES (?, ?, ?)";
+        try {
+            PreparedStatement statement = con.prepareStatement(Q);
+            
+            statement.setString(1, name);
+            statement.setString(2, spec);
+            statement.setBoolean(3, available);
+            statement.executeUpdate();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
         
+    public void addDataFeedback(String student, String comment, Integer feedback)
+    {
+        String Q = "INSERT INTO feedback (student, comments, feedback) VALUES (?, ?, ?)";
+        try {
+            PreparedStatement statement = con.prepareStatement(Q);
+            
+            statement.setString(1, student);
+            statement.setString(2, comment);
+            statement.setInt(3, feedback);
+            statement.executeUpdate();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }
