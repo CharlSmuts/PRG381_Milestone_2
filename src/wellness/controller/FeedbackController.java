@@ -14,16 +14,20 @@ import java.awt.event.ActionListener;
  * @author Koekie
  */
 public class FeedbackController {
-    private FeedbackPanel view;
+    private final FeedbackPanel view;
     
+    //Constructor
     public FeedbackController(FeedbackPanel view){
         this.view = view;
         
-        view.getSubmitButton().addActionListener(new SubmitButtonListener());   //adds an even listener to button
+        //adds an even listener to button
+        view.getSubmitButton().addActionListener(new SubmitButtonListener());   
     }
     
-    class SubmitButtonListener implements ActionListener {  //even listener in question
-        public void actionPerformed(ActionEvent e) {    //button click action
+    //even listener in question, class that implements ActionListener interface
+    class SubmitButtonListener implements ActionListener {  
+        @Override   //button click action
+        public void actionPerformed(ActionEvent e) {    
             String studentNr = view.getStudentNumber();
             String comment = view.getComment();
             int rating = view.getRating();

@@ -23,9 +23,11 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         initComponents();
         
+        // Creating a new view and controller
         FeedbackPanel feedbackView = new FeedbackPanel();
         FeedbackController feedbackController = new FeedbackController(feedbackView);
        
+        // Adds the feedbackView panel to the tabs
         tabs.add("Feedback", feedbackView);
         
         add(tabs);

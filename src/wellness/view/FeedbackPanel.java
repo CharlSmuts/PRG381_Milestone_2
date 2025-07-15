@@ -4,7 +4,6 @@
  */
 package wellness.view;
 
-import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.JButton;
 /**
@@ -19,25 +18,25 @@ public class FeedbackPanel extends javax.swing.JPanel {
     public FeedbackPanel() {
         initComponents();
         
-        sldrRating.addChangeListener(new ChangeListener(){  //change listener to update label with the slider value
-            public void stateChanged(ChangeEvent e){
-                int value = sldrRating.getValue();
-                lblRatingValue.setText(String.valueOf(value));
-            }
+        //change listener to update label with the slider value
+        sldrRating.addChangeListener((ChangeEvent e) -> {
+            int value = sldrRating.getValue();
+            lblRatingValue.setText(String.valueOf(value));
         });
     }
     
-    public void clearSubmissionFields(){   //clear fields
+    //clear fields
+    public void clearSubmissionFields(){   
         txtStudentNumber.setText("");
         txtaComments.setText("");
         sldrRating.setValue(3);
-    }
+    }   
     
-    public JButton getSubmitButton(){   //button getter so that controller can implement the submission logic
+    //  Getters to be used in controller
+    public JButton getSubmitButton(){   
         return btnSubmitFeedback;
     }
     
-    //  Getters to be used in controller
     public String getStudentNumber(){
         return txtStudentNumber.getText();
     }

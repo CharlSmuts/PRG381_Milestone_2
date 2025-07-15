@@ -13,12 +13,14 @@ public class FeedbackModel {
     private String comment;
     private int rating;
     
+    // Constructor
     public FeedbackModel(String studentNr, String comment, int rating){
         this.studentNr = studentNr;
         this.comment = comment;
         this.rating = rating;
     }
     
+    // Setters
     public void setStudentNr(String studentNr){
         this.studentNr = studentNr;
     }
@@ -31,6 +33,7 @@ public class FeedbackModel {
         this.rating = rating;
     }
     
+    // Getters
     public String getStudentNr(){
         return studentNr;
     }
