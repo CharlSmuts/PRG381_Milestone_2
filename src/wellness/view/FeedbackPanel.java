@@ -4,6 +4,9 @@
  */
 package wellness.view;
 
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.JButton;
 /**
  *
  * @author Koekie
@@ -15,6 +18,36 @@ public class FeedbackPanel extends javax.swing.JPanel {
      */
     public FeedbackPanel() {
         initComponents();
+        
+        sldrRating.addChangeListener(new ChangeListener(){  //change listener to update label with the slider value
+            public void stateChanged(ChangeEvent e){
+                int value = sldrRating.getValue();
+                lblRatingValue.setText(String.valueOf(value));
+            }
+        });
+    }
+    
+    public void clearSubmissionFields(){   //clear fields
+        txtStudentNumber.setText("");
+        txtaComments.setText("");
+        sldrRating.setValue(3);
+    }
+    
+    public JButton getSubmitButton(){   //button getter so that controller can implement the submission logic
+        return btnSubmitFeedback;
+    }
+    
+    //  Getters to be used in controller
+    public String getStudentNumber(){
+        return txtStudentNumber.getText();
+    }
+    
+    public String getComment(){
+        return txtaComments.getText();
+    }
+    
+    public int getRating(){
+        return sldrRating.getValue();
     }
 
     /**
@@ -29,20 +62,97 @@ public class FeedbackPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         tabFeedback = new javax.swing.JTabbedPane();
         panSubmitFeedback = new javax.swing.JPanel();
+        sldrRating = new javax.swing.JSlider();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtaComments = new javax.swing.JTextArea();
+        btnSubmitFeedback = new javax.swing.JButton();
+        lblRating = new javax.swing.JLabel();
+        lblComments = new javax.swing.JLabel();
+        lblFeedback = new javax.swing.JLabel();
+        lblRatingValue = new javax.swing.JLabel();
+        lblStudentNumber = new javax.swing.JLabel();
+        txtStudentNumber = new javax.swing.JTextField();
         tabFeedbackHistory = new javax.swing.JPanel();
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel2.setText("Feedback:");
 
+        sldrRating.setMaximum(5);
+        sldrRating.setMinimum(1);
+        sldrRating.setValue(3);
+
+        txtaComments.setColumns(20);
+        txtaComments.setRows(5);
+        jScrollPane1.setViewportView(txtaComments);
+
+        btnSubmitFeedback.setText("Submit Feedback");
+
+        lblRating.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblRating.setText("Rating:");
+
+        lblComments.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblComments.setText("Comments:");
+
+        lblFeedback.setFont(new java.awt.Font("Yu Gothic Medium", 1, 18)); // NOI18N
+        lblFeedback.setText("Submit your Feedback:");
+
+        lblRatingValue.setText("3");
+
+        lblStudentNumber.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblStudentNumber.setText("Student Number:");
+
         javax.swing.GroupLayout panSubmitFeedbackLayout = new javax.swing.GroupLayout(panSubmitFeedback);
         panSubmitFeedback.setLayout(panSubmitFeedbackLayout);
         panSubmitFeedbackLayout.setHorizontalGroup(
             panSubmitFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 597, Short.MAX_VALUE)
+            .addGroup(panSubmitFeedbackLayout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addGroup(panSubmitFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panSubmitFeedbackLayout.createSequentialGroup()
+                        .addGroup(panSubmitFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblComments, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblRating, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblStudentNumber, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(26, 26, 26)
+                        .addGroup(panSubmitFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblFeedback)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panSubmitFeedbackLayout.createSequentialGroup()
+                                .addComponent(sldrRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblRatingValue))
+                            .addComponent(jScrollPane1)
+                            .addComponent(txtStudentNumber))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panSubmitFeedbackLayout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(btnSubmitFeedback, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                        .addGap(287, 287, 287))))
         );
         panSubmitFeedbackLayout.setVerticalGroup(
             panSubmitFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 311, Short.MAX_VALUE)
+            .addGroup(panSubmitFeedbackLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblFeedback)
+                .addGap(30, 30, 30)
+                .addGroup(panSubmitFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblStudentNumber)
+                    .addComponent(txtStudentNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(panSubmitFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panSubmitFeedbackLayout.createSequentialGroup()
+                        .addGroup(panSubmitFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblRating)
+                            .addGroup(panSubmitFeedbackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(sldrRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblRatingValue)))
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panSubmitFeedbackLayout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(lblComments)))
+                .addGap(18, 18, 18)
+                .addComponent(btnSubmitFeedback)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         tabFeedback.addTab("Submit Feedback", panSubmitFeedback);
@@ -51,11 +161,11 @@ public class FeedbackPanel extends javax.swing.JPanel {
         tabFeedbackHistory.setLayout(tabFeedbackHistoryLayout);
         tabFeedbackHistoryLayout.setHorizontalGroup(
             tabFeedbackHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 597, Short.MAX_VALUE)
+            .addGap(0, 717, Short.MAX_VALUE)
         );
         tabFeedbackHistoryLayout.setVerticalGroup(
             tabFeedbackHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 311, Short.MAX_VALUE)
+            .addGap(0, 355, Short.MAX_VALUE)
         );
 
         tabFeedback.addTab("Feedback History", tabFeedbackHistory);
@@ -65,13 +175,13 @@ public class FeedbackPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(233, 233, 233)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tabFeedback)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,9 +196,19 @@ public class FeedbackPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSubmitFeedback;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblComments;
+    private javax.swing.JLabel lblFeedback;
+    private javax.swing.JLabel lblRating;
+    private javax.swing.JLabel lblRatingValue;
+    private javax.swing.JLabel lblStudentNumber;
     private javax.swing.JPanel panSubmitFeedback;
+    private javax.swing.JSlider sldrRating;
     private javax.swing.JTabbedPane tabFeedback;
     private javax.swing.JPanel tabFeedbackHistory;
+    private javax.swing.JTextField txtStudentNumber;
+    private javax.swing.JTextArea txtaComments;
     // End of variables declaration//GEN-END:variables
 }

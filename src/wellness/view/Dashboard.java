@@ -5,6 +5,9 @@
 package wellness.view;
 
 import javax.swing.JTabbedPane;
+import wellness.controller.FeedbackController;
+import wellness.model.FeedbackModel;
+import wellness.view.FeedbackPanel;
 
 /**
  *
@@ -20,7 +23,10 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         initComponents();
         
-        tabs.add("Feedback", new FeedbackPanel());
+        FeedbackPanel feedbackView = new FeedbackPanel();
+        FeedbackController feedbackController = new FeedbackController(feedbackView);
+       
+        tabs.add("Feedback", feedbackView);
         
         add(tabs);
     }
@@ -43,16 +49,15 @@ public class Dashboard extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 773, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
