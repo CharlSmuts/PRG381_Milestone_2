@@ -108,7 +108,7 @@ public class DBConnection {
     //DATA ADDING UNTESTED
     //
     */
-    
+    //add
     public void addDataAppointments(String student, String counselor, Date appointment_date,  Time appointment_time, String status)
     {
         String Q = "INSERT INTO appointments (student, counselor, appointment_date, appointment_time, status) VALUES (?, ?, ?, ?, ?)";
@@ -152,6 +152,120 @@ public class DBConnection {
             statement.setString(1, student);
             statement.setString(2, comment);
             statement.setInt(3, feedback);
+            statement.executeUpdate();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    //View
+    public void viewFeedback()
+    {
+        
+    }
+    
+    public void viewAppointments()
+    {
+        
+    }
+    
+    public void viewCounselors()
+    {
+        
+    }
+    //update
+    public void updateAppointment(String student, String counselor, Date appointment_date,  Time appointment_time, String status, Integer aid)
+    {
+        String Q = "UPDATE appointments SET student = ?, counselor = ?, appointment_date = ?, appointment_time = ?, status = ? WHERE aid = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(Q);
+            
+            statement.setString(1, student);
+            statement.setString(2, counselor);
+            statement.setDate(3, appointment_date);
+            statement.setTime(4, appointment_time);
+            statement.setString(5, status);
+            statement.setInt(6, aid);
+            statement.executeUpdate();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+    }
+    
+    public void updateCounselors(String name, String spec, boolean available, Integer cid)
+    {
+        String Q = "UPDATE counselors SET name = ?, specialization = ?, available = ? WHERE cid = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(Q);
+            
+            statement.setString(1, name);
+            statement.setString(2, spec);
+            statement.setBoolean(3, available);
+            statement.setInt(4, cid);
+            statement.executeUpdate();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }   
+    }
+    
+    public void updateFeedback(String student, String comment, Integer feedback, Integer fid)
+    {
+         String Q = "UPDATE feedback SET student = ?, comments = ?, feedback = ? WHERE fid = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(Q);
+            
+            statement.setString(1, student);
+            statement.setString(2, comment);
+            statement.setInt(3, feedback);
+            statement.setInt(4, fid);
+            statement.executeUpdate();
+            
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    //delete
+    public void deleteAppointment(Integer aid)
+    {
+         String Q = "DELETE FROM appointments WHERE aid = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(Q);
+            
+            statement.setInt(1, aid);
+            statement.executeUpdate();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void deleteCounselor(Integer cid)
+    {
+        String Q = "DELETE FROM counselors WHERE cid = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(Q);
+            
+            statement.setInt(1, cid);
+
+            statement.executeUpdate();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void deleteFeedback(Integer fid)
+    {
+        String Q = "DELETE FROM feedback WHERE fid = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(Q);
+            
+            statement.setInt(1, fid);
+
             statement.executeUpdate();
             
         } catch (SQLException ex) {
