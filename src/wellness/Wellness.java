@@ -7,14 +7,14 @@ package wellness;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import wellness.model.DBConnection;
 import wellness.view.Dashboard;
-import static wellness.view.Dashboard.db;
 /**
  *
  * @author Koekie
  */
 public class Wellness {
-
+    public static DBConnection db = new DBConnection();
     /**
      * @param args the command line arguments
      */

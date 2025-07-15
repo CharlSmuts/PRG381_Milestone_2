@@ -26,8 +26,8 @@ public class Dashboard extends javax.swing.JFrame {
         
         // Creating a new view and controller
         FeedbackPanel feedbackView = new FeedbackPanel();
-        FeedbackController feedbackController = new FeedbackController(feedbackView);
-       
+        FeedbackController feedbackController = new FeedbackController(feedbackView, wellness.Wellness.db);
+        feedbackView.setController(feedbackController);
         // Adds the feedbackView panel to the tabs
         tabs.add("Feedback", feedbackView);
         
@@ -66,7 +66,7 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static DBConnection db = new DBConnection();
+    
     //Creating a new object to get access to the DBConnection class in wellness.model
     
     /**

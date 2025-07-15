@@ -12,6 +12,8 @@ import java.util.*;
 import java.sql.Time;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -153,15 +155,34 @@ public class DBConnection {
             statement.setString(2, comment);
             statement.setInt(3, feedback);
             statement.executeUpdate();
-            
+            System.out.println("added to feedback" + student + ", " + comment + ", " + feedback);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
     //View
-    public void viewFeedback()
+    public ArrayList<String[]> viewFeedback()
     {
+        ArrayList<String[]> datalist = new ArrayList<>();
         
+        
+        try {
+            String Q = "SELECT * FROM feedback";
+            ResultSet table = this.con.createStatement().executeQuery(Q);
+            
+            while (table.next()) {
+                int fid = table.getInt("fid");
+                String student = table.getString("student");
+                String comment = table.getString("comments");
+                int feedback = table.getInt("feedback");
+                
+                String[] row = {Integer.toString(fid), student, comment, Integer.toString(feedback)};
+                datalist.add(row);               
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return datalist;
     }
     
     public void viewAppointments()
