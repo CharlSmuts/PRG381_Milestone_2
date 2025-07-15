@@ -6,6 +6,7 @@ package wellness.view;
 
 import javax.swing.JTabbedPane;
 import wellness.controller.FeedbackController;
+import wellness.model.DBConnection;
 import wellness.model.FeedbackModel;
 import wellness.view.FeedbackPanel;
 
@@ -65,6 +66,9 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public static DBConnection db = new DBConnection();
+    //Creating a new object to get access to the DBConnection class in wellness.model
+    
     /**
      * @param args the command line arguments
      */
@@ -88,6 +92,8 @@ public class Dashboard extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Dashboard().setVisible(true));
+        
+      
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

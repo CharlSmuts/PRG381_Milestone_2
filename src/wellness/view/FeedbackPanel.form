@@ -158,6 +158,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Submit Feedback"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubmitFeedbackActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblRating">
               <Properties>

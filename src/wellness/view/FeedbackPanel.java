@@ -6,6 +6,7 @@ package wellness.view;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.JButton;
+import wellness.model.DBConnection;
 /**
  *
  * @author Koekie
@@ -35,6 +36,7 @@ public class FeedbackPanel extends javax.swing.JPanel {
     //  Getters to be used in controller
     public JButton getSubmitButton(){   
         return btnSubmitFeedback;
+
     }
     
     public String getStudentNumber(){
@@ -85,6 +87,11 @@ public class FeedbackPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(txtaComments);
 
         btnSubmitFeedback.setText("Submit Feedback");
+        btnSubmitFeedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitFeedbackActionPerformed(evt);
+            }
+        });
 
         lblRating.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblRating.setText("Rating:");
@@ -192,6 +199,10 @@ public class FeedbackPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSubmitFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitFeedbackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSubmitFeedbackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
