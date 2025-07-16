@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import wellness.model.DBConnection;
 import java.util.*;
-import javax.swing.JOptionPane;
 
 
 
@@ -76,16 +75,10 @@ public class FeedbackController {
             view.clearSubmissionFields();
             
             //Creation of feedback object and subsequent storage:
-            FeedbackModel feedback = new FeedbackModel(studentNr, comment, rating);
-            
-            //Testing purposes:
-            System.out.println("Feedback submitted:");
-            System.out.println("Student: " + feedback.getStudentNr());
-            System.out.println("Rating: " + feedback.getRating());
-            System.out.println("Comment: " + feedback.getComment());
+            FeedbackModel feedback = new FeedbackModel(studentNr, comment, rating);            
             
             // Add to database using inputs
-            if(db.addDataFeedback(studentNr, comment, rating)){
+            if(db.addDataFeedback(feedback.getStudentNr(), feedback.getComment(), feedback.getRating())){
                 view.throwSuccess("Successfully added", "Feedback Submission"); 
                 populateTable();
             }
@@ -105,13 +98,7 @@ public class FeedbackController {
             view.clearSubmissionFields();
             
             //Creation of feedback object and subsequent storage:
-            FeedbackModel feedback = new FeedbackModel(studentNr, comment, rating);
-            
-            //Testing purposes:
-            System.out.println("Feedback submitted:");
-            System.out.println("Student: " + feedback.getStudentNr());
-            System.out.println("Rating: " + feedback.getRating());
-            System.out.println("Comment: " + feedback.getComment());
+            FeedbackModel feedback = new FeedbackModel(studentNr, comment, rating);            
         }
     }
     
