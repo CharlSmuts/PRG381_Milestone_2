@@ -87,18 +87,34 @@ public class FeedbackController {
  
     class UpdateButtonListener implements ActionListener {  
         @Override   //button click action
-        public void actionPerformed(ActionEvent e) {    
+        public void actionPerformed(ActionEvent e) {  
+            String selectedID = view.getSelectedID();
             String studentNr = view.getStudentNumber();
             String comment = view.getComment();
             int rating = view.getRating();
             
             // Validation of inputs:
+            if (Objects.equals(selectedID, "")){  
+                view.throwWarning("Valid row must be selected", "Update Error");
+                return;
+            }else if(Objects.equals(comment, "")){
+                view.throwWarning("Comments field may not be empty", "Update Error");
+                return;
+            }else if(Objects.equals(studentNr, "")){
+                view.throwWarning("Student Number field may not be empty", "Update Error");
+            }
             
             // Clearing the fields after submission:
             view.clearSubmissionFields();
             
             //Creation of feedback object and subsequent storage:
-            FeedbackModel feedback = new FeedbackModel(studentNr, comment, rating);            
+            FeedbackModel feedback = new FeedbackModel(studentNr, comment, rating); 
+            
+            // Update in database:
+            if(db.updateFeedback(feedback.getStudentNr(), feedback.getComment(), feedback.getRating(), Integer.valueOf(selectedID))){
+                view.throwSuccess("Successfully updated", "Feedback Update"); 
+                populateTable();
+            }
         }
     }
     

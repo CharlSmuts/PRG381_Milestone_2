@@ -236,7 +236,7 @@ public class DBConnection {
         }   
     }
     
-    public void updateFeedback(String student, String comment, Integer feedback, Integer fid)
+    public boolean updateFeedback(String student, String comment, Integer feedback, Integer fid)
     {
          String Q = "UPDATE feedback SET student = ?, comments = ?, feedback = ? WHERE fid = ?";
         try {
@@ -246,11 +246,14 @@ public class DBConnection {
             statement.setString(2, comment);
             statement.setInt(3, feedback);
             statement.setInt(4, fid);
-            statement.executeUpdate();
+            
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
             
             
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return false;
         }
     }
     //delete
