@@ -145,7 +145,7 @@ public class DBConnection {
         }
     }
         
-    public void addDataFeedback(String student, String comment, Integer feedback)
+    public boolean addDataFeedback(String student, String comment, Integer feedback)
     {
         String Q = "INSERT INTO feedback (student, comments, feedback) VALUES (?, ?, ?)";
         try {
@@ -154,10 +154,14 @@ public class DBConnection {
             statement.setString(1, student);
             statement.setString(2, comment);
             statement.setInt(3, feedback);
-            statement.executeUpdate();
+            
+            //If the addition was success return true
+            int rowsAffected = statement.executeUpdate();
             System.out.println("added to feedback" + student + ", " + comment + ", " + feedback);
+            return rowsAffected > 0;
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return false;
         }
     }
     //View
@@ -279,18 +283,21 @@ public class DBConnection {
         }
     }
     
-    public void deleteFeedback(Integer fid)
+    public boolean deleteFeedback(Integer fid)
     {
         String Q = "DELETE FROM feedback WHERE fid = ?";
         try {
             PreparedStatement statement = con.prepareStatement(Q);
             
             statement.setInt(1, fid);
-
-            statement.executeUpdate();
+            
+            //If the delete was success return true
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0; 
             
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return false;
         }
     }
 }

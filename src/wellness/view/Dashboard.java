@@ -4,10 +4,8 @@
  */
 package wellness.view;
 
-import javax.swing.JTabbedPane;
 import wellness.controller.FeedbackController;
 import wellness.model.DBConnection;
-import wellness.model.FeedbackModel;
 import wellness.view.FeedbackPanel;
 
 /**
@@ -21,13 +19,12 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public Dashboard() {
+    public Dashboard(DBConnection db) {
         initComponents();
         
         // Creating a new view and controller
         FeedbackPanel feedbackView = new FeedbackPanel();
-        FeedbackController feedbackController = new FeedbackController(feedbackView, wellness.Wellness.db);
-        feedbackView.setController(feedbackController);
+        FeedbackController feedbackController = new FeedbackController(feedbackView, db);
         // Adds the feedbackView panel to the tabs
         tabs.add("Feedback", feedbackView);
         
@@ -91,7 +88,7 @@ public class Dashboard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Dashboard().setVisible(true));
+//        java.awt.EventQueue.invokeLater(() -> new Dashboard().setVisible(true));
         
       
     }

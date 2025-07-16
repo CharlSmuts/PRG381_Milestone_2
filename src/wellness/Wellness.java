@@ -41,7 +41,7 @@ public class Wellness {
                 {
                     ex.printStackTrace();
                 } 
-                new Dashboard().setVisible(true);
+                new Dashboard(db).setVisible(true);
                
             }
         });
