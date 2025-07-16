@@ -189,10 +189,28 @@ public class DBConnection {
         return datalist;
     }
     
-    public void viewAppointments()
-    {
-        
-    }
+    public ArrayList<String[]> viewAppointments() {
+        ArrayList<String[]> datalist = new ArrayList<>();
+        try {
+            String Q = "SELECT * FROM appointments";
+            ResultSet rs = con.createStatement().executeQuery(Q);
+
+            while (rs.next()) {
+                String[] row = {
+                    String.valueOf(rs.getInt("aid")),
+                    rs.getString("student"),
+                    rs.getString("counselor"),
+                    rs.getDate("appointment_date").toString(),
+                    rs.getTime("appointment_time").toString(),
+                    rs.getString("status")
+                };
+                datalist.add(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return datalist;
+   }
     
     public void viewCounselors()
     {

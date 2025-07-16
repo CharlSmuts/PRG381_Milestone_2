@@ -4,6 +4,9 @@
  */
 package wellness.view;
 
+import wellness.view.AppointmentView;
+import wellness.controller.AppointmentController;
+
 import wellness.controller.FeedbackController;
 import wellness.model.DBConnection;
 import wellness.view.FeedbackPanel;
@@ -21,6 +24,10 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard(DBConnection db) {
         initComponents();
+        
+        AppointmentView appointmentView = new AppointmentView();
+        AppointmentController appointmentController = new AppointmentController(appointmentView);
+        tabs.add("Appointments", appointmentView);
         
         // Creating a new view and controller
         FeedbackPanel feedbackView = new FeedbackPanel();
