@@ -129,7 +129,7 @@ public class DBConnection {
         }
     }
     
-    public void addDataCounselors(String name, String spec, boolean available)
+    public boolean addDataCounselors(String name, String spec, boolean available)
     {
        String Q = "INSERT INTO counselors (name, specialization, available) VALUES (?, ?, ?)";
         try {
@@ -138,12 +138,18 @@ public class DBConnection {
             statement.setString(1, name);
             statement.setString(2, spec);
             statement.setBoolean(3, available);
-            statement.executeUpdate();
+            
+             //If the addition was success return true
+            int rowsAffected = statement.executeUpdate();
+            System.out.println("added to counselors" + name + ", " + spec + ", " + available);
+            return rowsAffected > 0;
             
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return false;
         }
     }
+
         
     public boolean addDataFeedback(String student, String comment, Integer feedback)
     {
@@ -212,10 +218,36 @@ public class DBConnection {
         return datalist;
    }
     
-    public void viewCounselors()
+    public ArrayList<String[]> viewCounselors()
     {
+       
+    ArrayList<String[]> cdatalist = new ArrayList<>();
+    
+    try {
+        String Q = "SELECT * FROM counselors";
+        ResultSet table = this.con.createStatement().executeQuery(Q);
         
+        while (table.next()) {
+            int cid = table.getInt("cid");
+            String name = table.getString("name");
+            String spec = table.getString("specialization");
+            boolean available = table.getBoolean("available");
+            
+            String[] row = {
+                Integer.toString(cid),
+                name,
+                spec,
+                Boolean.toString(available)
+            };
+            
+            cdatalist.add(row);
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
     }
+    return cdatalist; 
+    }
+
     //update
     public void updateAppointment(String student, String counselor, Date appointment_date,  Time appointment_time, String status, Integer aid)
     {
@@ -237,7 +269,7 @@ public class DBConnection {
         
     }
     
-    public void updateCounselors(String name, String spec, boolean available, Integer cid)
+    public boolean updateCounselors(String name, String spec, boolean available, Integer cid)
     {
         String Q = "UPDATE counselors SET name = ?, specialization = ?, available = ? WHERE cid = ?";
         try {
@@ -248,11 +280,14 @@ public class DBConnection {
             statement.setBoolean(3, available);
             statement.setInt(4, cid);
             statement.executeUpdate();
-            
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return false;
         }   
     }
+
     
     public boolean updateFeedback(String student, String comment, Integer feedback, Integer fid)
     {
@@ -289,20 +324,21 @@ public class DBConnection {
         }
     }
     
-    public void deleteCounselor(Integer cid)
-    {
-        String Q = "DELETE FROM counselors WHERE cid = ?";
-        try {
-            PreparedStatement statement = con.prepareStatement(Q);
-            
-            statement.setInt(1, cid);
+   public boolean deleteCounselor(Integer cid) {
+    String Q = "DELETE FROM counselors WHERE cid = ?";
+    try {
+        PreparedStatement statement = con.prepareStatement(Q);
+        statement.setInt(1, cid);
 
-            statement.executeUpdate();
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        int rowsAffected = statement.executeUpdate();  
+        return rowsAffected > 0;
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        return false;
     }
+}
+
     
     public boolean deleteFeedback(Integer fid)
     {
