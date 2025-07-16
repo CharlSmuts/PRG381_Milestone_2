@@ -52,13 +52,13 @@ public class Dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 773, Short.MAX_VALUE)
+                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

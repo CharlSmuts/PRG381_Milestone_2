@@ -21,11 +21,59 @@ public class FeedbackController {
         this.view = view;
         
         //adds an even listener to button
-        view.getSubmitButton().addActionListener(new SubmitButtonListener());   
+        view.getSubmitButton().addActionListener(new SubmitButtonListener());
+        view.getUpdateButton().addActionListener(new UpdateButtonListener());
+        view.getDeleteButton().addActionListener(new DeleteButtonListener());
     }
     
     //even listener in question, class that implements ActionListener interface
     class SubmitButtonListener implements ActionListener {  
+        @Override   //button click action
+        public void actionPerformed(ActionEvent e) {    
+            String studentNr = view.getStudentNumber();
+            String comment = view.getComment();
+            int rating = view.getRating();
+            
+            // Validation of inputs:
+            
+            // Clearing the fields after submission:
+            view.clearSubmissionFields();
+            
+            //Creation of feedback object and subsequent storage:
+            FeedbackModel feedback = new FeedbackModel(studentNr, comment, rating);
+            
+            //Testing purposes:
+            System.out.println("Feedback submitted:");
+            System.out.println("Student: " + feedback.getStudentNr());
+            System.out.println("Rating: " + feedback.getRating());
+            System.out.println("Comment: " + feedback.getComment());
+        }
+    }
+    
+    class UpdateButtonListener implements ActionListener {  
+        @Override   //button click action
+        public void actionPerformed(ActionEvent e) {    
+            String studentNr = view.getStudentNumber();
+            String comment = view.getComment();
+            int rating = view.getRating();
+            
+            // Validation of inputs:
+            
+            // Clearing the fields after submission:
+            view.clearSubmissionFields();
+            
+            //Creation of feedback object and subsequent storage:
+            FeedbackModel feedback = new FeedbackModel(studentNr, comment, rating);
+            
+            //Testing purposes:
+            System.out.println("Feedback submitted:");
+            System.out.println("Student: " + feedback.getStudentNr());
+            System.out.println("Rating: " + feedback.getRating());
+            System.out.println("Comment: " + feedback.getComment());
+        }
+    }
+    
+    class DeleteButtonListener implements ActionListener {  
         @Override   //button click action
         public void actionPerformed(ActionEvent e) {    
             String studentNr = view.getStudentNumber();
