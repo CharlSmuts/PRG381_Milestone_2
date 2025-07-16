@@ -6,8 +6,10 @@ package wellness.view;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.JButton;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Koekie
@@ -17,7 +19,9 @@ public class FeedbackPanel extends javax.swing.JPanel {
     /**
      * Creates new form FeedbackView
      */
+
     DefaultTableModel model;
+
     
     public FeedbackPanel() {
         initComponents();
@@ -56,6 +60,11 @@ public class FeedbackPanel extends javax.swing.JPanel {
        
     }
     
+    private FeedbackController controller;
+    public void setController(FeedbackController controller) {
+    this.controller = controller;
+}
+    
     //clear fields
     public void clearSubmissionFields(){   
         txtStudentNumber.setText("");
@@ -66,7 +75,9 @@ public class FeedbackPanel extends javax.swing.JPanel {
     //  Getters to be used in controller
     public JButton getSubmitButton(){   
         return btnSubmitFeedback;
+
     }
+
     
     public JButton getUpdateButton(){   
         return btnUpdateFeedback;
@@ -111,6 +122,11 @@ public class FeedbackPanel extends javax.swing.JPanel {
         lblStudentNumber = new javax.swing.JLabel();
         txtStudentNumber = new javax.swing.JTextField();
         tabFeedbackHistory = new javax.swing.JPanel();
+
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
         jScrollPane2 = new javax.swing.JScrollPane();
         tabFeedbackTable = new javax.swing.JTable();
         btnUpdateFeedback = new javax.swing.JButton();
@@ -127,6 +143,7 @@ public class FeedbackPanel extends javax.swing.JPanel {
         lblRatingValueUpdate = new javax.swing.JLabel();
         btnClearUpdate = new javax.swing.JButton();
 
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel2.setText("Feedback:");
 
@@ -139,6 +156,11 @@ public class FeedbackPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(txtaComments);
 
         btnSubmitFeedback.setText("Submit Feedback");
+        btnSubmitFeedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitFeedbackActionPerformed(evt);
+            }
+        });
 
         lblRating.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblRating.setText("Rating:");
@@ -205,7 +227,9 @@ public class FeedbackPanel extends javax.swing.JPanel {
                         .addComponent(lblComments)))
                 .addGap(18, 18, 18)
                 .addComponent(btnSubmitFeedback)
+
                 .addContainerGap(129, Short.MAX_VALUE))
+
         );
 
         tabpnFeedback.addTab("Submit Feedback", panSubmitFeedback);
@@ -263,6 +287,31 @@ public class FeedbackPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Show all feedback");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "feedback ID", "Student ID", "Comment", "rating"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+
         javax.swing.GroupLayout tabFeedbackHistoryLayout = new javax.swing.GroupLayout(tabFeedbackHistory);
         tabFeedbackHistory.setLayout(tabFeedbackHistoryLayout);
         tabFeedbackHistoryLayout.setHorizontalGroup(
@@ -270,6 +319,23 @@ public class FeedbackPanel extends javax.swing.JPanel {
             .addGroup(tabFeedbackHistoryLayout.createSequentialGroup()
                 .addGroup(tabFeedbackHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabFeedbackHistoryLayout.createSequentialGroup()
+//devdb
+                        .addGap(294, 294, 294)
+                        .addComponent(jButton1))
+                    .addGroup(tabFeedbackHistoryLayout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(137, Short.MAX_VALUE))
+        );
+        tabFeedbackHistoryLayout.setVerticalGroup(
+            tabFeedbackHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabFeedbackHistoryLayout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(90, 90, 90))
+//feedback
                         .addGap(34, 34, 34)
                         .addGroup(tabFeedbackHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCommentsUpdate, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -363,6 +429,19 @@ public class FeedbackPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSubmitFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitFeedbackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSubmitFeedbackActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    DefaultTableModel mdl = (DefaultTableModel) jTable1.getModel(); 
+    
+    for(String[] row : controller.feedbackControlView())
+    {
+       mdl.addRow(row);
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void btnClearUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearUpdateActionPerformed
         // Clear the inputs in the text fields and deselects table row
         txtStudentNumberUpdate.setText("");
@@ -372,16 +451,25 @@ public class FeedbackPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnClearUpdateActionPerformed
 
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClearUpdate;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSubmitFeedback;
+
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+
     private javax.swing.JButton btnSubmitFeedbackUpdate;
     private javax.swing.JButton btnUpdateFeedback;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+
     private javax.swing.JLabel lblComments;
     private javax.swing.JLabel lblCommentsUpdate;
     private javax.swing.JLabel lblFeedback;

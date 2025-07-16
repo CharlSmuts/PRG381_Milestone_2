@@ -9,16 +9,23 @@ import wellness.view.FeedbackPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import wellness.model.DBConnection;
+import java.util.*;
+
+
+
 /**
  *
  * @author Koekie
  */
 public class FeedbackController {
     private final FeedbackPanel view;
-    
+    private final DBConnection db;
+
     //Constructor
-    public FeedbackController(FeedbackPanel view){
+    public FeedbackController(FeedbackPanel view, DBConnection db){
         this.view = view;
+        this.db = db;
         
         //adds an even listener to button
         view.getSubmitButton().addActionListener(new SubmitButtonListener());
@@ -47,7 +54,20 @@ public class FeedbackController {
             System.out.println("Student: " + feedback.getStudentNr());
             System.out.println("Rating: " + feedback.getRating());
             System.out.println("Comment: " + feedback.getComment());
+            
+            db.addDataFeedback(studentNr, comment, rating);
+
+            
         }
+    }
+    
+    public ArrayList<String[]> feedbackControlView()
+    {
+        ArrayList<String[]> list = new ArrayList<>();
+        
+        list = db.viewFeedback();
+        
+        return list;
     }
     
     class UpdateButtonListener implements ActionListener {  
