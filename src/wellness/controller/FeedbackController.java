@@ -66,10 +66,17 @@ public class FeedbackController {
             if (Objects.equals(studentNr, "")){
                 view.throwWarning("Student Number field may not be empty", "Submission Error");
                 return;
-            }else if(Objects.equals(comment, "")){
-                view.throwWarning("Comments field may not be empty", "Submission Error");
+            }else if(studentNr.length() > 10){
+                view.throwWarning("Student Number may not be larger than 10", "Submission Error");
                 return;
+            }else if(comment.length() > 100){
+                view.throwWarning("Comments may not be larger than 100 characters", "Submission Error");
+                return;
+            }else if(Objects.equals(comment, "")){
+                    view.throwWarning("Comments field may not be empty", "Submission Error");
+                    return;
             }
+            
             
             // Clearing the fields after submission:
             view.clearSubmissionFields();
@@ -100,8 +107,14 @@ public class FeedbackController {
             }else if(Objects.equals(comment, "")){
                 view.throwWarning("Comments field may not be empty", "Update Error");
                 return;
+            }else if(comment.length() > 100){
+                view.throwWarning("Comments may not be larger than 100 characters", "Update Error");
+                return;
             }else if(Objects.equals(studentNr, "")){
                 view.throwWarning("Student Number field may not be empty", "Update Error");
+            }else if(studentNr.length() > 10){
+                view.throwWarning("Student Number may not be larger than 10", "Update Error");
+                return;
             }
             
             // Clearing the fields after submission:
