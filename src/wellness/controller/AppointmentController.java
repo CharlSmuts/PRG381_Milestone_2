@@ -1,4 +1,4 @@
- package wellness.controller;
+package wellness.controller;
 
 import wellness.model.DBConnection;
 import wellness.view.AppointmentView;
@@ -45,17 +45,16 @@ public class AppointmentController {
                 view.getCounselorCombo().setSelectedItem(view.getTableAppointments().getValueAt(row, 2).toString());
                 view.getTxtDate().setText(view.getTableAppointments().getValueAt(row, 3).toString());
                 view.getTxtTime().setText(view.getTableAppointments().getValueAt(row, 4).toString());
-                
                 switch (view.getTableAppointments().getValueAt(row, 5).toString()) {
                     case "Scheduled":
-                        view.getcmbBox().setSelectedIndex(0);
+                        view.getCmbBox().setSelectedIndex(0);
                         break;
                     case "Completed":
-                        view.getcmbBox().setSelectedIndex(1);
+                        view.getCmbBox().setSelectedIndex(1);
                         break;
                     case "Cancelled":
-                        view.getcmbBox().setSelectedIndex(2);
-                        break;    
+                        view.getCmbBox().setSelectedIndex(2);
+                        break;
                     default:
                         throw new AssertionError();
                 }
@@ -96,7 +95,7 @@ public class AppointmentController {
         String counselor = (String) view.getCounselorCombo().getSelectedItem();
         String dateStr = view.getTxtDate().getText().trim();
         String timeStr = view.getTxtTime().getText().trim();
-        String status = view.getcmbText().trim();
+        String status = view.getCmbStatus().trim();
 
         if (student.isEmpty() || counselor == null || dateStr.isEmpty() || timeStr.isEmpty() || status.isEmpty()) {
             JOptionPane.showMessageDialog(null, "All fields must be filled.");
@@ -156,7 +155,7 @@ public class AppointmentController {
             String counselor = (String) view.getCounselorCombo().getSelectedItem();
             Date date = Date.valueOf(view.getTxtDate().getText().trim());
             Time time = Time.valueOf(view.getTxtTime().getText().trim());
-            String status = view.getcmbText().trim();
+            String status = view.getCmbStatus().trim();
 
             db.addDataAppointments(student, counselor, date, time, status);
             JOptionPane.showMessageDialog(null, "Appointment added.");
@@ -181,7 +180,7 @@ public class AppointmentController {
             String counselor = (String) view.getCounselorCombo().getSelectedItem();
             Date date = Date.valueOf(view.getTxtDate().getText().trim());
             Time time = Time.valueOf(view.getTxtTime().getText().trim());
-            String status = view.getcmbText().trim();
+            String status = view.getCmbStatus().trim();
 
             db.updateAppointment(student, counselor, date, time, status, id);
             JOptionPane.showMessageDialog(null, "Updated successfully.");

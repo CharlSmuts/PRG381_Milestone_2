@@ -161,11 +161,6 @@ public class FeedbackPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tabFeedbackTable);
 
         btnUpdateFeedback.setText("Update");
-        btnUpdateFeedback.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateFeedbackActionPerformed(evt);
-            }
-        });
 
         btnDelete.setText("Delete");
 
@@ -223,12 +218,15 @@ public class FeedbackPanel extends javax.swing.JPanel {
                         .addGap(73, 73, 73)
                         .addComponent(lblFeedbackUpdate))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabFeedbackHistoryLayout.createSequentialGroup()
-                        .addComponent(btnSubmitFeedbackUpdate)
-                        .addGap(33, 33, 33)
-                        .addComponent(btnUpdateFeedback)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnDelete))
-                    .addComponent(btnClearUpdate, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(tabFeedbackHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabFeedbackHistoryLayout.createSequentialGroup()
+                                .addComponent(btnSubmitFeedbackUpdate)
+                                .addGap(33, 33, 33)
+                                .addComponent(btnUpdateFeedback)
+                                .addGap(31, 31, 31)
+                                .addComponent(btnDelete))
+                            .addComponent(btnClearUpdate, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(3, 3, 3)
                 .addComponent(lblRatingValueUpdate)
                 .addGap(27, 27, 27)
@@ -349,10 +347,6 @@ public class FeedbackPanel extends javax.swing.JPanel {
         // Clear the inputs in the text fields and deselects table row
         clearSubmissionFields();
     }//GEN-LAST:event_btnClearUpdateActionPerformed
-
-    private void btnUpdateFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateFeedbackActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdateFeedbackActionPerformed
 
 
 
