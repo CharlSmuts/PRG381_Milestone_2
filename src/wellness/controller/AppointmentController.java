@@ -13,21 +13,11 @@ public class AppointmentController {
     private final AppointmentView view;
     private final DBConnection db;
 
-    public AppointmentController(AppointmentView view) {
+    public AppointmentController(AppointmentView view, DBConnection db) {
         this.view = view;
-        this.db = new DBConnection();
+        this.db = db;
 
-        try {
-            db.connect();
-            if (!db.tableExists()) {
-                db.createTable();
-            }
-            loadCounselors();
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Database error: " + e.getMessage());
-        }
-
+        loadCounselors();
         addListeners();
         loadAppointments();
     }

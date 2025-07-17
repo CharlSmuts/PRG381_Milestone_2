@@ -27,7 +27,7 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         
         AppointmentView appointmentView = new AppointmentView();
-        AppointmentController appointmentController = new AppointmentController(appointmentView);
+        AppointmentController appointmentController = new AppointmentController(appointmentView, db);
         tabs.add("Appointments", appointmentView);
         
         // Creating a new view and controller
