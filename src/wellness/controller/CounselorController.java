@@ -7,6 +7,8 @@ package wellness.controller;
 import wellness.model.CounselorModel;
 import wellness.view.CounselorPanel;
 
+import wellness.controller.AppointmentController;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import wellness.model.DBConnection;
@@ -18,12 +20,14 @@ import java.util.*;
  */
 public class CounselorController {
     
-        private final CounselorPanel view;
+    private final CounselorPanel view;
     private final DBConnection db;
+    private final AppointmentController appointmentController;
 
-    public CounselorController(CounselorPanel view, DBConnection db) {
+    public CounselorController(CounselorPanel view, DBConnection db, AppointmentController appointmentController) {
         this.view = view;
         this.db = db;
+        this.appointmentController = appointmentController;
 
         view.getAddButton().addActionListener(new AddButtonListener());
         view.getUpdateButton().addActionListener(new UpdateButtonListener());
@@ -85,6 +89,7 @@ public class CounselorController {
             if (db.addDataCounselors(name, specialization, available)) {
                 view.throwSuccess("Counselor added successfully.", "Add Success");
                 populateTable();
+                appointmentController.loadCounselors();
             } else {
                 view.throwWarning("Failed to add counselor.", "Database Error");
             }
@@ -114,6 +119,7 @@ public class CounselorController {
             if (db.updateCounselors(name, specialization, available, Integer.valueOf(selectedId))) {
                 view.throwSuccess("Counselor updated successfully.", "Update Success");
                 populateTable();
+                appointmentController.loadCounselors();
             } else {
                 view.throwWarning("Failed to update counselor.", "Database Error");
             }
@@ -136,6 +142,7 @@ public class CounselorController {
                 if (db.deleteCounselor(Integer.valueOf(selectedId))) {
                     view.throwSuccess("Counselor deleted successfully.", "Delete Success");
                     populateTable();
+                    appointmentController.loadCounselors();
                 } else {
                     view.throwWarning("Failed to delete counselor.", "Database Error");
                 }
