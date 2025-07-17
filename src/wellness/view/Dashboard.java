@@ -37,7 +37,7 @@ public class Dashboard extends javax.swing.JFrame {
         tabs.add("Feedback", feedbackView);
         
         CounselorPanel counselorView = new CounselorPanel();
-        CounselorController counselorController = new CounselorController(counselorView, db);
+        CounselorController counselorController = new CounselorController(counselorView, db, appointmentController);
         tabs.add("Counselor", counselorView);
 
         

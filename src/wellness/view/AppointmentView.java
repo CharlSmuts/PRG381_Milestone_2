@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -33,7 +34,6 @@ public class AppointmentView extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAppointments = new javax.swing.JTable();
-        txtCounselor = new javax.swing.JTextField();
         txtDate = new javax.swing.JTextField();
         txtStudent = new javax.swing.JTextField();
         txtTime = new javax.swing.JTextField();
@@ -46,6 +46,7 @@ public class AppointmentView extends javax.swing.JPanel {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         cmbStatus = new javax.swing.JComboBox<>();
+        counselorCombo = new javax.swing.JComboBox<>();
 
         tableAppointments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,6 +76,7 @@ public class AppointmentView extends javax.swing.JPanel {
         btnDelete.setText("Delete");
 
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Scheduled", "Completed", "Cancelled" }));
+        counselorCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -99,6 +101,18 @@ public class AppointmentView extends javax.swing.JPanel {
                             .addComponent(dtelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCounselor, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(conslerlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(timelbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtStudent, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                            .addComponent(stntlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtTime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(stslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dtelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(conslerlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(counselorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -131,7 +145,7 @@ public class AppointmentView extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(conslerlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCounselor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(counselorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dtelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -155,13 +169,13 @@ public class AppointmentView extends javax.swing.JPanel {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbStatus;
     private javax.swing.JLabel conslerlbl;
+    private javax.swing.JComboBox<String> counselorCombo;
     private javax.swing.JLabel dtelbl;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel stntlbl;
     private javax.swing.JLabel stslbl;
     private javax.swing.JTable tableAppointments;
     private javax.swing.JLabel timelbl;
-    private javax.swing.JTextField txtCounselor;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtStudent;
     private javax.swing.JTextField txtTime;
@@ -169,7 +183,7 @@ public class AppointmentView extends javax.swing.JPanel {
 
     public JTable getTableAppointments() { return tableAppointments; }
     public JTextField getTxtStudent() { return txtStudent; }
-    public JTextField getTxtCounselor() { return txtCounselor; }
+    public JComboBox<String> getCounselorCombo() { return counselorCombo; }
     public JTextField getTxtDate() { return txtDate; }
     public JTextField getTxtTime() { return txtTime; }
     public String getcmbText() {return cmbStatus.getSelectedItem().toString();}
