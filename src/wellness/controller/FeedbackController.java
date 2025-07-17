@@ -63,6 +63,13 @@ public class FeedbackController {
             int rating = view.getRating();
             
             // Validation of inputs:
+            try{
+                Integer.parseInt(studentNr);
+            }catch (NumberFormatException ex){
+                view.throwWarning("Student Number must be a numeric value", "Submission Error");
+                return;
+            }
+            
             if (Objects.equals(studentNr, "")){
                 view.throwWarning("Student Number field may not be empty", "Submission Error");
                 return;
@@ -100,7 +107,14 @@ public class FeedbackController {
             String comment = view.getComment();
             int rating = view.getRating();
             
-            // Validation of inputs:
+            // Validation of inputs: 
+            try{
+                Integer.parseInt(studentNr);
+            }catch (NumberFormatException ex){
+                view.throwWarning("Student Number must be a numeric value", "Update Error");
+                return;
+            }
+            
             if (Objects.equals(selectedID, "")){  
                 view.throwWarning("Valid row must be selected", "Update Error");
                 return;
