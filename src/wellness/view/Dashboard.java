@@ -4,7 +4,13 @@
  */
 package wellness.view;
 
-import javax.swing.JTabbedPane;
+import wellness.view.AppointmentView;
+import wellness.controller.AppointmentController;
+import wellness.controller.CounselorController;
+
+import wellness.controller.FeedbackController;
+import wellness.model.DBConnection;
+import wellness.view.FeedbackPanel;
 
 /**
  *
@@ -17,10 +23,23 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public Dashboard() {
+    public Dashboard(DBConnection db) {
         initComponents();
         
-        tabs.add("Feedback", new FeedbackPanel());
+        AppointmentView appointmentView = new AppointmentView();
+        AppointmentController appointmentController = new AppointmentController(appointmentView, db);
+        tabs.add("Appointments", appointmentView);
+        
+        // Creating a new view and controller
+        FeedbackPanel feedbackView = new FeedbackPanel();
+        FeedbackController feedbackController = new FeedbackController(feedbackView, db);
+        // Adds the feedbackView panel to the tabs
+        tabs.add("Feedback", feedbackView);
+        
+        CounselorPanel counselorView = new CounselorPanel();
+        CounselorController counselorController = new CounselorController(counselorView, db, appointmentController);
+        tabs.add("Counselor", counselorView);
+
         
         add(tabs);
     }
@@ -43,21 +62,23 @@ public class Dashboard extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    //Creating a new object to get access to the DBConnection class in wellness.model
+    
     /**
      * @param args the command line arguments
      */
@@ -80,7 +101,9 @@ public class Dashboard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Dashboard().setVisible(true));
+//        java.awt.EventQueue.invokeLater(() -> new Dashboard().setVisible(true));
+        
+      
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
